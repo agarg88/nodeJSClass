@@ -1,33 +1,40 @@
-# nodeJSClass
-This is a Proxy Server for Node.js submitted as the pre-work requirement for CodePath.
+# Proxy Server
+
+This is a Proxy Server for Node.js submitted as the [pre-work](http://courses.codepath.com/snippets/intro_to_nodejs/prework) requirement for CodePath.
 
 Time spent: 4 hours
 
 Completed:
 
-[] Required: Requests to port 8000 are echoed back with the same HTTP headers and body
-[] Required: Requests/reponses are proxied to/from the destination server
-[] Required: The destination server is configurable via the --host, --port or --url arguments
-[] Required: The destination server is configurable via the x-destination-url header
-[] Required: Client requests and respones are printed to stdout
-[] Required: The --logfile argument outputs all logs to the file specified instead of stdout
-[] Optional: The --exec argument proxies stdin/stdout to/from the destination program
-[] Optional: The --loglevel argument sets the logging chattiness
-[] Optional: Supports HTTPS
-[] Optional: -h argument prints CLI API
-Walkthrough Gif: [Add walkthrough.gif to the project root]
+* [] Required: Requests to port `8000` are echoed back with the same HTTP headers and body
+* [] Required: Requests/reponses are proxied to/from the destination server
+* [] Required: The destination server is configurable via the `--host`, `--port`  or `--url` arguments
+* [] Required: The destination server is configurable via the `x-destination-url` header
+* [] Required: Client requests and respones are printed to stdout
+* [] Required: The `--logfile` argument outputs all logs to the file specified instead of stdout
+* [] Optional: The `--exec` argument proxies stdin/stdout to/from the destination program
+* [] Optional: The `--loglevel` argument sets the logging chattiness
+* [] Optional: Supports HTTPS
+* [] Optional: `-h` argument prints CLI API
 
-Video Walkthrough
+Walkthrough Gif:
+[Add walkthrough.gif to the project root]
+
+![Video Walkthrough](walkthrough.gif)
 
 Note: to embed the gif file, just check your gif file into your repo and update the name of the file above.
 
-Starting the Server
+## Starting the Server
 
+```bash
 npm start
-Features
+```
 
-Echo Server:
+## Features
 
+### Echo Server:
+
+```bash
 curl -v -X POST http://127.0.0.1:8000 -d "hello self" -H "x-asdf: yodawg"
 * Rebuilt URL to: http://127.0.0.1:8000/
 * Hostname was NOT found in DNS cache
@@ -54,10 +61,13 @@ curl -v -X POST http://127.0.0.1:8000 -d "hello self" -H "x-asdf: yodawg"
 < 
 * Connection #0 to host 127.0.0.1 left intact
 hello self
-Proxy Server:
+```
+
+### Proxy Server:
 
 Port 8001 will proxy to the echo server on port 8000.
 
+```bash
 curl -v http://127.0.0.1:8001/asdf -d "hello proxy"
 * Hostname was NOT found in DNS cache
 *   Trying 127.0.0.1...
@@ -81,32 +91,34 @@ curl -v http://127.0.0.1:8001/asdf -d "hello proxy"
 < 
 * Closing connection 0
 hello proxy
-Configuration:
+```
 
-CLI Arguments:
+### Configuration:
+
+#### CLI Arguments:
 
 The following CLI arguments are supported:
 
---host
+##### `--host`
 
-The host of the destination server. Defaults to 127.0.0.1.
+The host of the destination server. Defaults to `127.0.0.1`.
 
---port
+##### `--port`
 
-The port of the destination server. Defaults to 80 or 8000 when a host is not specified.
+The port of the destination server. Defaults to `80` or `8000` when a host is not specified.
 
---url
+##### `--url`
 
-A single url that overrides the above. E.g., http://www.google.com
+A single url that overrides the above. E.g., `http://www.google.com`
 
---logfile
+##### `--logfile`
 
 Specify a file path to redirect logging to.
 
-Headers
+#### Headers
 
 The follow http header(s) are supported:
 
-x-destination-url
+##### `x-destination-url`
 
-Specify the destination url on a per request basis. Overrides and follows the same format as the --url argument.
+Specify the destination url on a per request basis. Overrides and follows the same format as the `--url` argument.
